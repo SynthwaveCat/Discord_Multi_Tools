@@ -29,12 +29,7 @@ int main(int argc, char const **argv)
     sfText_setPosition(Titre, text_position);
 
     // Creation d'un paterne de rectangle
-    button = sfRectangleShape_create();
-    sfRectangleShape_setSize(button, (sfVector2f){100, 50});
-    sfRectangleShape_setPosition(button, (sfVector2f){50, 50});
-    sfRectangleShape_setFillColor(button, sfGreen);
-    sfRectangleShape_setOutlineColor(button, sfBlack);
-    sfRectangleShape_setOutlineThickness(button, 2);
+    button = create_rectangle_shape(100, 50, 50, 50, sfRed, sfBlack, 2);
 
 sfRenderWindow_drawRectangleShape(window, button, NULL);
 

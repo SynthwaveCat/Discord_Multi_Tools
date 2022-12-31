@@ -4,7 +4,7 @@
 
 int main(int argc, char const **argv)
 {
-    //Initialisation des variables et structures
+    //Initialisation des variables et structures CSFML
     sfRenderWindow *window;
     sfRectangleShape *button;
     sfVector2f titre_position = {300, 0};
@@ -31,7 +31,7 @@ int main(int argc, char const **argv)
     // Creation d'un paterne de rectangle
     button = create_rectangle_shape(100, 50, 50, 50, sfGreen, sfBlack, 2);
 
-sfRenderWindow_drawRectangleShape(window, button, NULL);
+    sfRenderWindow_drawRectangleShape(window, button, NULL);
 
     while (sfRenderWindow_isOpen(window)) {
 

@@ -7,6 +7,8 @@
     #include <stddef.h>
     #include <SFML/Window.h>
     #include <SFML/Graphics.h>
+    #include <curl/curl.h>
+    #include <json-c/json.h>
 
     sfRenderWindow *create_renderwindow(unsigned int x, unsigned int y, unsigned int bpp, char *title);
     sfText *create_text(char *string, sfFont *font, sfColor text_color, unsigned int text_size);

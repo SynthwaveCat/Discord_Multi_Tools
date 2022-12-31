@@ -40,6 +40,16 @@ int main(int argc, char const **argv)
             if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window);
             }
+
+        // Bouton
+        if (mouse_on_rectangle(button, window))
+        {
+            if (click_on_rectangle(button, window))
+            {
+                printf("test");
+            }
+        }
+        
         // Get text input
             if (event.type == sfEvtTextEntered) {
                 if (event.text.unicode < 128) {

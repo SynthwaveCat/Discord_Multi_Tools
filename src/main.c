@@ -7,12 +7,12 @@ int main(int argc, char const **argv)
     //Initialisation des variables et structures
     sfRenderWindow *window;
     sfRectangleShape *button;
-    sfVector2f text_position = {300, 0};
+    sfVector2f titre_position = {300, 0};
     sfVector2i window_vector = {200, 200};
     sfText *Titre;
     sfFont *font;
     sfEvent event;
-    
+
     // Initialisation de la fenetre
     window = create_renderwindow(800, 600, 32, "GeoLocationIPTool");
     if (!window)
@@ -26,10 +26,10 @@ int main(int argc, char const **argv)
 
     // Initialisation du titre
     Titre = create_text("Geo IP Tool", font, sfBlack, 25);
-    sfText_setPosition(Titre, text_position);
+    sfText_setPosition(Titre, titre_position);
 
     // Creation d'un paterne de rectangle
-    button = create_rectangle_shape(100, 50, 50, 50, sfRed, sfBlack, 2);
+    button = create_rectangle_shape(100, 50, 50, 50, sfGreen, sfBlack, 2);
 
 sfRenderWindow_drawRectangleShape(window, button, NULL);
 
@@ -39,6 +39,12 @@ sfRenderWindow_drawRectangleShape(window, button, NULL);
         while (sfRenderWindow_pollEvent(window, &event)) {
             if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window);
+            }
+        // Get text input
+            if (event.type == sfEvtTextEntered) {
+                if (event.text.unicode < 128) {
+                    printf("Ascii charactere typed : %c\n", (char)event.text.unicode);
+                }
             }
         }
         // Couleurs de fond de la fenetre

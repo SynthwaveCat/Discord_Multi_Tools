@@ -65,26 +65,26 @@ int main(int argc, char const **argv)
             if (mouse_on_rectangle(input_box, window)) {
 
                 if (click_on_rectangle(input_box, window)) {
-
+                    sfRectangleShape_setFillColor(input_box, sfGrey);
                     is_focused = sfTrue;
-                    if (is_focused == sfTrue) {
-                        // Get text input
-                        if (event.type == sfEvtTextEntered) {
-                            if (event.text.unicode < 128) {
-                                printf("Ascii charactere typed : %c\n", (char)event.text.unicode);
-                            }
-                        }
-                        sfRectangleShape_setFillColor(input_box, sfGrey);
-                    }
-                }
-                else {
-                    is_focused = sfFalse;
-                    sfRectangleShape_setFillColor(input_box, sfTransparent);
                 }
             }
 
             if (mouse_on_rectangle(button, window)) {
                 sfRectangleShape_setFillColor(button, sfDarkGreen);
+                if (click_on_rectangle(button, window)) {
+                    sfRectangleShape_setFillColor(input_box, sfTransparent);
+                    is_focused = sfFalse;
+                }
+            }
+
+            if (is_focused == sfTrue) {
+                // Get text input
+                if (event.type == sfEvtTextEntered) {
+                    if (event.text.unicode < 128) {
+                        printf("Ascii charactere typed : %c\n", (char)event.text.unicode);
+                    }
+                }
             }
 
             else if (!mouse_on_rectangle(button, window)) {
@@ -110,5 +110,4 @@ int main(int argc, char const **argv)
     sfText_destroy(Title);
     sfRenderWindow_destroy(window);
     return 0;
-    
 }

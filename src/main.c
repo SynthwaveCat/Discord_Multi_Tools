@@ -10,6 +10,10 @@ int main(int argc, char const **argv)
 
     // Initialisation des couleurs
     sfColor sfDarkGreen = sfColor_fromRGB(44, 119, 9);
+    sfColor sfGrey = sfColor_fromRGB(136, 136, 136);
+
+    // Initialisation des variables sfBool
+    sfBool is_focused = sfFalse;
 
     // Declarations des rectangles
     sfRectangleShape *button;
@@ -57,19 +61,28 @@ int main(int argc, char const **argv)
                 sfRenderWindow_close(window);
             }
 
-            // Bouton
+            // Boutons
             if (mouse_on_rectangle(input_box, window)) {
 
                 if (click_on_rectangle(input_box, window)) {
 
-                    // Get text input
-                    if (event.type == sfEvtTextEntered) {
-                        if (event.text.unicode < 128) {
-                            printf("Ascii charactere typed : %c\n", (char)event.text.unicode);
+                    is_focused = sfTrue;
+                    if (is_focused == sfTrue) {
+                        // Get text input
+                        if (event.type == sfEvtTextEntered) {
+                            if (event.text.unicode < 128) {
+                                printf("Ascii charactere typed : %c\n", (char)event.text.unicode);
+                            }
                         }
+                        sfRectangleShape_setFillColor(input_box, sfGrey);
                     }
                 }
+                else {
+                    is_focused = sfFalse;
+                    sfRectangleShape_setFillColor(input_box, sfTransparent);
+                }
             }
+
             if (mouse_on_rectangle(button, window)) {
                 sfRectangleShape_setFillColor(button, sfDarkGreen);
             }
